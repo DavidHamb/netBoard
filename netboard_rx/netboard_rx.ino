@@ -26,8 +26,14 @@ void loop() {
     else if (pingValue > 50 && pingValue <= 150) {
       oneLight(yellowLed);
     }
-    else if (pingValue > 150) {
+    else if (pingValue > 150 && pingValue != 9999) {
       oneLight(redLed);
+    }
+    else if (pingValue == 9999){
+      digitalWrite(greenLed, LOW);
+      digitalWrite(yellowLed, LOW);
+      digitalWrite(redLed, !digitalRead(redLed)); // led flashes when network is unavailable
+      delay(200);
     }
   }
 }
